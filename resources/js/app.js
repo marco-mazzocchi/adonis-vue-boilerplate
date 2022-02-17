@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './components/App'
 import routes from './routes'
 
+import 'vfonts/Inter.css'
 import '../css/app.css'
 
 const router = createRouter({

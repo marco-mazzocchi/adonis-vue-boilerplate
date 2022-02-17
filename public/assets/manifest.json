@@ -1,4 +1,6 @@
 {
-  "assets/app.css": "http://localhost:57736/assets/app.css",
-  "assets/app.js": "http://localhost:57736/assets/app.js"
+  "assets/app.css": "http://localhost:49852/assets/app.css",
+  "assets/app.js": "http://localhost:49852/assets/app.js",
+  "assets/fonts/Inter-Medium.woff2": "http://localhost:49852/assets/fonts/Inter-Medium.d0a58d95.woff2",
+  "assets/fonts/Inter-Regular.woff2": "http://localhost:49852/assets/fonts/Inter-Regular.26a30a5f.woff2"
 }
