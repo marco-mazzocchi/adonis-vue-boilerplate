@@ -11,7 +11,11 @@ export default {
 
 <template>
   <h1>Home</h1>
-  <n-space>
-    <n-button type="primary"> Primary </n-button>
-  </n-space>
+  <n-button type="primary"> Primary </n-button>
 </template>
+
+<style lang="scss" scoped>
+h1 {
+  text-align: center;
+}
+</style>

@@ -1,5 +1,15 @@
 <script>
-import { NConfigProvider } from 'naive-ui'
+import { defineComponent } from 'vue'
+import {
+  NConfigProvider,
+  NSpace,
+  NLayout,
+  NLayoutHeader,
+  NLayoutContent,
+  NLayoutSider,
+} from 'naive-ui'
+
+import Navbar from './Navbar.vue'
 
 /**
  * Use this for type hints under js file
@@ -7,28 +17,50 @@ import { NConfigProvider } from 'naive-ui'
  */
 const themeOverrides = {
   common: {
-    fontWeightStrong: '600',
     primaryColor: '#f54646',
     primaryColorHover: '#f52929',
   },
 }
 
-export default {
-  name: 'App',
-  components: { NConfigProvider },
+export default defineComponent({
+  components: {
+    NSpace,
+    Navbar,
+    NConfigProvider,
+    NLayout,
+    NLayoutHeader,
+    NLayoutContent,
+    NLayoutSider,
+  },
   setup() {
     return {
       themeOverrides,
     }
   },
-}
+})
 </script>
-
 <template>
   <n-config-provider :theme-overrides="themeOverrides">
-    <hr />
-    <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link>
-    <hr />
-    <router-view></router-view>
+    <n-space vertical size="large">
+      <n-layout>
+        <n-layout-header bordered>
+          <navbar />
+        </n-layout-header>
+        <n-layout has-sider>
+          <n-layout-sider
+            collapse-mode="transform"
+            show-trigger="arrow-circle"
+            content-style="padding: 24px;"
+            bordered
+            collapsed
+          >
+            <p>Sidebar</p>
+          </n-layout-sider>
+          <n-layout-content content-style="padding: 24px;"
+            ><router-view></router-view
+          ></n-layout-content>
+        </n-layout>
+      </n-layout>
+    </n-space>
   </n-config-provider>
 </template>
