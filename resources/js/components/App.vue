@@ -1,15 +1,8 @@
 <script>
 import { defineComponent } from 'vue'
-import {
-  NConfigProvider,
-  NSpace,
-  NLayout,
-  NLayoutHeader,
-  NLayoutContent,
-  NLayoutSider,
-} from 'naive-ui'
+import { NConfigProvider, NMessageProvider } from 'naive-ui'
 
-import Navbar from './Navbar.vue'
+import Layout from './Layout.vue'
 
 /**
  * Use this for type hints under js file
@@ -24,13 +17,9 @@ const themeOverrides = {
 
 export default defineComponent({
   components: {
-    NSpace,
-    Navbar,
+    NMessageProvider,
     NConfigProvider,
-    NLayout,
-    NLayoutHeader,
-    NLayoutContent,
-    NLayoutSider,
+    Layout,
   },
   setup() {
     return {
@@ -41,26 +30,8 @@ export default defineComponent({
 </script>
 <template>
   <n-config-provider :theme-overrides="themeOverrides">
-    <n-space vertical size="large">
-      <n-layout>
-        <n-layout-header bordered>
-          <navbar />
-        </n-layout-header>
-        <n-layout has-sider>
-          <n-layout-sider
-            collapse-mode="transform"
-            show-trigger="arrow-circle"
-            content-style="padding: 24px;"
-            bordered
-            collapsed
-          >
-            <p>Sidebar</p>
-          </n-layout-sider>
-          <n-layout-content content-style="padding: 24px;"
-            ><router-view></router-view
-          ></n-layout-content>
-        </n-layout>
-      </n-layout>
-    </n-space>
+    <n-message-provider>
+      <router-view />
+    </n-message-provider>
   </n-config-provider>
 </template>

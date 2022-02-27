@@ -2,56 +2,11 @@
 import { defineComponent, h, ref } from 'vue'
 import { NButton, NMenu, NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { Information as WorkIcon, Home as HomeIcon } from '@vicons/carbon'
+import { Information as WorkIcon, Home as HomeIcon, Logout as LogoutIcon } from '@vicons/carbon'
 
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
-
-const menuOptions = [
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          class: 'logo',
-          to: {
-            name: 'home',
-          },
-        },
-        { default: () => 'My Manager' }
-      ),
-    key: 'logo',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'home',
-          },
-        },
-        { default: () => 'Go Home' }
-      ),
-    key: 'home',
-    icon: renderIcon(HomeIcon),
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            path: '/about',
-          },
-        },
-        { default: () => 'About' }
-      ),
-    key: 'about',
-    icon: renderIcon(WorkIcon),
-  },
-]
 
 export default {
   name: 'Navbar',
@@ -59,10 +14,75 @@ export default {
     NButton,
     NMenu,
   },
-  setup() {
+  data() {
+    const menuOptions = [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              class: 'logo',
+              to: {
+                name: 'home',
+              },
+            },
+            { default: () => 'Unity' }
+          ),
+        key: 'logo',
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: {
+                name: 'home',
+              },
+            },
+            { default: () => 'Go Home' }
+          ),
+        key: 'home',
+        icon: renderIcon(HomeIcon),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: {
+                path: '/about',
+              },
+            },
+            { default: () => 'About' }
+          ),
+        key: 'about',
+        icon: renderIcon(WorkIcon),
+      },
+      {
+        label: () =>
+          h(
+            'a',
+            {
+              href: '#',
+              onClick: (e) => {
+                e.preventDefault()
+                this.$http.get('/logout').then((response) => {
+                  if (response.status === 200) {
+                    this.$router.push('/login')
+                  }
+                })
+              },
+            },
+            'Logout'
+          ),
+        key: 'logout',
+        icon: renderIcon(LogoutIcon),
+      },
+    ]
+
     return {
-      activeKey: ref(null),
       menuOptions,
+      activeKey: ref(null),
     }
   },
 }

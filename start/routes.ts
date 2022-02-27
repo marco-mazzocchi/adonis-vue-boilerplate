@@ -23,3 +23,14 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+Route.post('login', 'AuthController.login')
+
+Route.get('logout', 'AuthController.logout')
+
+Route.group(() => {
+  Route.get('about', async ({ auth }) => {
+    await auth.use('web').authenticate()
+    return [1, 2, 3, 4]
+  })
+}).middleware('auth')
